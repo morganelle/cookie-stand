@@ -30,129 +30,52 @@ Store.prototype.calcDailyCookiesEst = function() {
 };
 
 // Construct new object
-var firstAndPike = new Store('1st and Pike', 'first-and-pike', 6, 20, 23, 65, 6.3);
-var seaTac = new Store('SeaTac Airport', 'sea-tac', 6, 20, 3, 24, 1.2);
-var seattleCenter = new Store('Seattle Center', 'seattle-center', 6, 20, 11, 38, 3.7);
-var capHill = new Store('Capitol Hill', 'cap-hill', 6, 20, 3, 24, 1.2);
-var alki = new Store('Alki', 'alki', 6, 20, 3, 24, 1.2);
+var firstAndPike = new Store('1st and Pike', 'first-and-pike', 6, 21, 23, 65, 6.3);
+var seaTac = new Store('SeaTac Airport', 'sea-tac', 6, 21, 3, 24, 1.2);
+var seattleCenter = new Store('Seattle Center', 'seattle-center', 6, 21, 11, 38, 3.7);
+var capHill = new Store('Capitol Hill', 'cap-hill', 6, 21, 20, 38, 2.3);
+var alki = new Store('Alki', 'alki', 6, 21, 2, 16, 4.6);
 
 // New Store template
 // var newStore = new Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCookiesPerCust);
 
-// Store object literals
-//
-// var seattleCenter = {
-//   location: 'Seattle Center',
-//   storeId: 'seattle-center',
-//   storeOpen:6,
-//   storeClose:20,
-//   minCust: 11,
-//   maxCust: 38,
-//   avgCookiesPerCust: 3.7,
-//   hourlyCookies:[],
-//   dayTotal: 0,
-//   custVolumeEst: function() {
-//     return (Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust));
-//   },
-//   calcHourlyCookiesEst: function() {
-//     for (var index = this.storeOpen; index <= this.storeClose; index++) {
-//       this.hourlyCookies.push(Math.round(this.custVolumeEst() * this.avgCookiesPerCust));
-//     }
-//     return this.hourlyCookies;
-//   },
-//   calcDailyCookiesEst: function() {
-//     this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-//       return a + b;
-//     });
-//     return this.dayTotal;
-//   }
-// };
-//
-// var capHill = {
-//   location: 'Capitol Hill',
-//   storeId: 'cap-hill',
-//   storeOpen:6,
-//   storeClose:20,
-//   minCust: 20,
-//   maxCust: 38,
-//   avgCookiesPerCust: 2.3,
-//   hourlyCookies:[],
-//   dayTotal: 0,
-//   custVolumeEst: function() {
-//     return (Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust));
-//   },
-//   calcHourlyCookiesEst: function() {
-//     for (var index = this.storeOpen; index <= this.storeClose; index++) {
-//       this.hourlyCookies.push(Math.round(this.custVolumeEst() * this.avgCookiesPerCust));
-//     }
-//     return this.hourlyCookies;
-//   },
-//   calcDailyCookiesEst: function() {
-//     this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-//       return a + b;
-//     });
-//     return this.dayTotal;
-//   }
-// };
-//
-// var alki = {
-//   location: 'Alki',
-//   storeId: 'alki',
-//   storeOpen:6,
-//   storeClose:20,
-//   minCust: 2,
-//   maxCust: 16,
-//   avgCookiesPerCust: 4.6,
-//   hourlyCookies:[],
-//   dayTotal: 0,
-//   custVolumeEst: function() {
-//     return (Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust));
-//   },
-//   calcHourlyCookiesEst: function() {
-//     for (var index = this.storeOpen; index <= this.storeClose; index++) {
-//       this.hourlyCookies.push(Math.round(this.custVolumeEst() * this.avgCookiesPerCust));
-//     }
-//     return this.hourlyCookies;
-//   },
-//   calcDailyCookiesEst: function() {
-//     this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-//       return a + b;
-//     });
-//     return this.dayTotal;
-//   }
-// };
-
-// Runs object methods to calculate hourly and daily store estimates
-var calculateValues = function(store) {
-  store.calcHourlyCookiesEst();
-  store.calcDailyCookiesEst();
-};
-
-// Populates cookie sales in a list
-var populateContent = function(store) {
-  var storeList = document.getElementById(store.storeId);
-  // For loop that creates list items for each item in the hourlyCookies array
-  for (var i = 0; i < store.hourlyCookies.length; i++) {
-    var listElement = document.createElement('li');
-    listElement.textContent = (i + 6) + ':00 - ' + store.hourlyCookies[i] + ' cookies';
-    storeList.appendChild(listElement);
-  }
-  // Adds list item with total daily cookies and a class attribute
-  var totalListElement = document.createElement('li');
-  totalListElement.setAttribute('class','total');
-  totalListElement.textContent = 'Total: ' + store.dayTotal + ' cookies';
-  storeList.appendChild(totalListElement);
-};
-
 // All store objects in an array
 var stores = [firstAndPike, seaTac, seattleCenter, capHill, alki];
 
-// Function that runs the store estimates and inserts them into the HTML; for loop iterates through stores array
-var runStoreNumbers = function() {
-  for (var index = 0; index < stores.length; index++) {
-    calculateValues(stores[index]);
-    populateContent(stores[index]);
+var populateTable = function(stores) {
+  // steps through stores array, creates a row, and adds a store name td, has a nested loop to add all items in hourlyCookies array
+  for (var i = 0; i < stores.length; i++) {
+    console.log('outer for loop begins ' + i);
+    var tableEl = document.getElementById('sales');
+    var rowEl = document.createElement('tr');
+    var store = stores[i];
+    // Creates store name td at beginning of each tr
+    var tableData = document.createElement('td');
+    tableData.textContent = store.location;
+    rowEl.appendChild(tableData);
+    // runs calcHourlyCookiesEst to get array of hourly estimates by store
+    store.calcHourlyCookiesEst();
+    store.calcDailyCookiesEst();
+    // steps through each array of store.hourlyCookies values and populates a td
+    for (var j = 0; j < store.hourlyCookies.length; j++) {
+      var tableContent = store.hourlyCookies[j];
+      var tableData = document.createElement('td');
+      tableData.textContent = tableContent;
+      rowEl.appendChild(tableData);
+    }
+    // add daily store estimates as last td
+    tableData.textContent = store.dayTotal;
+    rowEl.appendChild(tableData);
+    // attaches the table row to DOM
+    tableEl.appendChild(rowEl);
+    console.log('outer for loop completes ' + i);
   }
+  // Add row for hourly totals by store
+  // var tableDataLastRow = document.createElement('td');
+  // rowEl.appendChild(tableDataLastRow);
+  // console.log(tableDataLastRow);
+  // tableData.textContent = 'Store totals';
+  // tableEl.appendChild(tableDataLastRow);
 };
 
-runStoreNumbers();
+populateTable(stores);

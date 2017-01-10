@@ -35,3 +35,16 @@ section h3 {
   font-family: Arial;
   color: #5F464B;
 }
+
+table#sales {
+  border-collapse: collapse;
+}
+
+table#sales, th, td {
+  border: 1px solid pink;
+}
+
+td {
+  height: 30px;
+  padding: 10px 8px;
+}
