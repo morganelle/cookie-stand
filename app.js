@@ -40,7 +40,7 @@ var seaTac = {
   location: 'SeaTac Airport',
   storeId: 'sea-tac',
   storeOpen:6,
-  storeClose:21,
+  storeClose:20,
   minCust: 3,
   maxCust: 24,
   avgCookiesPerCust: 1.2,
@@ -75,7 +75,7 @@ var seattleCenter = {
   location: 'Seattle Center',
   storeId: 'seattle-center',
   storeOpen:6,
-  storeClose:21,
+  storeClose:20,
   minCust: 11,
   maxCust: 38,
   avgCookiesPerCust: 3.7,
@@ -110,7 +110,7 @@ var capHill = {
   location: 'Capital Hill',
   storeId: 'cap-hill',
   storeOpen:6,
-  storeClose:21,
+  storeClose:20,
   minCust: 20,
   maxCust: 38,
   avgCookiesPerCust: 2.3,
@@ -145,7 +145,7 @@ var alki = {
   location: 'Alki',
   storeId: 'alki',
   storeOpen:6,
-  storeClose:21,
+  storeClose:20,
   minCust: 2,
   maxCust: 16,
   avgCookiesPerCust: 4.6,
@@ -192,6 +192,7 @@ var populateContent = function(store) {
   }
   // Adds list item with total daily cookies
   var totalListElement = document.createElement('li');
+  totalListElement.setAttribute('class','total');
   totalListElement.textContent = 'Total: ' + store.dayTotal + ' cookies';
   storeList.appendChild(totalListElement);
 };

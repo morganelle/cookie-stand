@@ -1,0 +1,26 @@
+section.store {
+  border: 1px solid #5F464B;
+  border-radius: 10px;
+  line-height: 1.4em;
+  margin: 0 20px 50px 0;
+  width: 400px;
+  float: left;
+}
+li.total {
+  color: #8E4A49;
+  font-weight: bold;
+  margin: 20px 0 0 0;
+  padding: 3px 0;
+  display: block;
+}
+ul {
+  padding-left:40px;
+}
+section h3 {
+  background-color: #C2FBEF;
+  padding: 20px;
+}
+* {
+  font-family: Arial;
+  color: #5F464B;
+}
