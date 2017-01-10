@@ -107,7 +107,7 @@ var seattleCenter = {
 };
 
 var capHill = {
-  location: 'Capital Hill',
+  location: 'Capitol Hill',
   storeId: 'cap-hill',
   storeOpen:6,
   storeClose:20,
