@@ -1,5 +1,5 @@
 section.store {
-  border: 1px solid #5F464B;
+  border: 2px solid #5F464B;
   border-radius: 10px;
   line-height: 1.4em;
   margin: 0 20px 50px 0;
@@ -13,6 +13,17 @@ li.total {
   padding: 3px 0;
   display: block;
 }
+
+header h1 {
+  display: inline;
+  font-size: 2em;
+  color: #5F464B;
+}
+
+h2 {
+  color: #8E4A49;
+}
+
 ul {
   padding-left:40px;
 }

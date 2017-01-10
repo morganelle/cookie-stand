@@ -187,7 +187,7 @@ var populateContent = function(store) {
   // For loop that creates list items for each item in the hourlyCookies array
   for (var i = 0; i < store.hourlyCookies.length; i++) {
     var listElement = document.createElement('li');
-    listElement.textContent = (i + 6) + ' o\'clock: ' + store.hourlyCookies[i] + ' cookies';
+    listElement.textContent = (i + 6) + ':00 - ' + store.hourlyCookies[i] + ' cookies';
     storeList.appendChild(listElement);
   }
   // Adds list item with total daily cookies
