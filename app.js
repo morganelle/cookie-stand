@@ -21,18 +21,10 @@ var firstAndPike = {
     return this.hourlyCookies;
   },
   calcDailyCookiesEst: function() {
-    if (this.hourlyCookies.length > 0) {
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    } else {
-      this.calcHourlyCookiesEst();
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    }
+    this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
+      return a + b;
+    });
+    return this.dayTotal;
   }
 };
 
@@ -56,18 +48,10 @@ var seaTac = {
     return this.hourlyCookies;
   },
   calcDailyCookiesEst: function() {
-    if (this.hourlyCookies.length > 0) {
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    } else {
-      this.calcHourlyCookiesEst();
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    }
+    this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
+      return a + b;
+    });
+    return this.dayTotal;
   }
 };
 
@@ -91,18 +75,10 @@ var seattleCenter = {
     return this.hourlyCookies;
   },
   calcDailyCookiesEst: function() {
-    if (this.hourlyCookies.length > 0) {
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    } else {
-      this.calcHourlyCookiesEst();
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    }
+    this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
+      return a + b;
+    });
+    return this.dayTotal;
   }
 };
 
@@ -126,18 +102,10 @@ var capHill = {
     return this.hourlyCookies;
   },
   calcDailyCookiesEst: function() {
-    if (this.hourlyCookies.length > 0) {
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    } else {
-      this.calcHourlyCookiesEst();
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    }
+    this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
+      return a + b;
+    });
+    return this.dayTotal;
   }
 };
 
@@ -161,27 +129,20 @@ var alki = {
     return this.hourlyCookies;
   },
   calcDailyCookiesEst: function() {
-    if (this.hourlyCookies.length > 0) {
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    } else {
-      this.calcHourlyCookiesEst();
-      this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-        return a + b;
-      });
-      return this.dayTotal;
-    }
+    this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
+      return a + b;
+    });
+    return this.dayTotal;
   }
 };
 
-// Runs object methods
+// Runs object methods to calculate hourly and daily store estimates
 var calculateValues = function(store) {
+  store.calcHourlyCookiesEst();
   store.calcDailyCookiesEst();
 };
 
-// Populates cookie sales content - first and pike only!!
+// Populates cookie sales in a list
 var populateContent = function(store) {
   var storeList = document.getElementById(store.storeId);
   // For loop that creates list items for each item in the hourlyCookies array
@@ -190,17 +151,17 @@ var populateContent = function(store) {
     listElement.textContent = (i + 6) + ':00 - ' + store.hourlyCookies[i] + ' cookies';
     storeList.appendChild(listElement);
   }
-  // Adds list item with total daily cookies
+  // Adds list item with total daily cookies and a class attribute
   var totalListElement = document.createElement('li');
   totalListElement.setAttribute('class','total');
   totalListElement.textContent = 'Total: ' + store.dayTotal + ' cookies';
   storeList.appendChild(totalListElement);
 };
 
-// all store objects in an array
+// All store objects in an array
 var stores = [firstAndPike, seaTac, seattleCenter, capHill, alki];
 
-// function that runs the store estimates and inserts them into the HTML
+// Function that runs the store estimates and inserts them into the HTML; for loop iterates through stores array
 var runStoreNumbers = function() {
   for (var index = 0; index < stores.length; index++) {
     calculateValues(stores[index]);
