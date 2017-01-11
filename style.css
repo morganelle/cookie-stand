@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Vampiro+One');
+
+body {
+  background-color: #EEF7F9;
+}
+
 section.store {
   border: 2px solid #5F464B;
   border-radius: 10px;
@@ -14,10 +20,16 @@ li.total {
   display: block;
 }
 
+header {
+  height: 94px;
+  padding-bottom:40px;
+}
+
 header h1 {
   display: inline;
   font-size: 2em;
   color: #5F464B;
+  font-family: 'Vampiro One', cursive;
 }
 
 h2 {
@@ -27,11 +39,68 @@ h2 {
 ul {
   padding-left:40px;
 }
-section h3 {
-  background-color: #C2FBEF;
-  padding: 20px;
-}
+
 * {
   font-family: Arial;
   color: #5F464B;
 }
+
+table#sales {
+  border-collapse: collapse;
+  background-color: #CCE8EE;
+}
+
+table#sales, th, td {
+  border: 1px solid #9BC0BF;
+}
+
+td {
+  height: 30px;
+  padding: 7px 7px;
+  text-align: center;
+  color: #498C8A;
+}
+
+td.store-name {
+  font-weight:bold;
+  text-align: right;
+  color: #5F464B;
+}
+tr.times td {
+  font-size: .8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #5F464B;
+}
+
+li.total {
+  color: #8E4A49;
+  font-weight: bold;
+  margin: 20px 0 0 0;
+  padding: 3px 0;
+  display: block;
+}
+
+p {
+  font-family: Georgia;
+  line-height: 1.4em;
+}
+
+section#about-us {
+  width: 50%;
+  float: left;
+  margin: 40px;
+}
+section#stores-info {
+  width: 30%;
+  float: left;
+  margin: 40px;
+}
+
+/*
+#4D4730
+#4B6858
+#498C8A
+#46ACC2
+#42F2F7
+*/
