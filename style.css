@@ -46,5 +46,14 @@ table#sales, th, td {
 
 td {
   height: 30px;
-  padding: 10px 8px;
+  padding: 7px 7px;
+}
+
+td.store-name {
+  font-weight:bold;
+}
+tr.times {
+  font-size: .8em;
+  font-weight: bold;
+  text-transform: uppercase;
 }
