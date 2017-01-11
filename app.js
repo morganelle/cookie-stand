@@ -1,9 +1,8 @@
 'use strict';
 
 // Store constructor
-function Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCookiesPerCust) {
+function Store(location, storeOpen, storeClose, minCust, maxCust, avgCookiesPerCust) {
   this.location = location;
-  this.storeId = storeId;
   this.storeOpen = storeOpen;
   this.storeClose = storeClose;
   this.minCust = minCust;
@@ -25,11 +24,11 @@ Store.prototype.calcCookieEst = function() {
 };
 
 // Construct new object
-var firstAndPike = new Store('1st and Pike', 'first-and-pike', 6, 21, 23, 65, 6.3);
-var seaTac = new Store('SeaTac Airport', 'sea-tac', 6, 21, 3, 24, 1.2);
-var seattleCenter = new Store('Seattle Center', 'seattle-center', 6, 21, 11, 38, 3.7);
-var capHill = new Store('Capitol Hill', 'cap-hill', 6, 21, 20, 38, 2.3);
-var alki = new Store('Alki', 'alki', 6, 21, 2, 16, 4.6);
+var firstAndPike = new Store('1st and Pike', 6, 21, 23, 65, 6.3);
+var seaTac = new Store('SeaTac Airport', 6, 21, 3, 24, 1.2);
+var seattleCenter = new Store('Seattle Center', 6, 21, 11, 38, 3.7);
+var capHill = new Store('Capitol Hill', 6, 21, 20, 38, 2.3);
+var alki = new Store('Alki', 6, 21, 2, 16, 4.6);
 
 // New Store template
 // var newStore = new Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCookiesPerCust);
@@ -70,7 +69,7 @@ var populateTable = function(stores) {
   }
 };
 
-// Populates footer with hourly totals
+// Populates footer table row with hourly totals
 var footer = function(store) {
   var rowFooterEl = document.createElement('tr');
   var tableFooterData = document.createElement('td');
@@ -90,6 +89,41 @@ var footer = function(store) {
   // attaches the table row to DOM
   tableEl.appendChild(rowFooterEl);
 };
+
+// var addStoreFormEl = document.getElementById('add-store-form'); // declares var from HTML form id
+//
+// // register submit event from addStoreFormEl
+// addStoreFormEl.addEventListener('submit', function(event) {
+//   event.preventDefault();
+//   event.stopPropagation();
+//
+//   console.log(event.target.storename.value);
+//   console.log(event.target.storeopen.value);
+//   console.log(event.target.storeclose.value);
+//   console.log(event.target.mincust.value);
+//   console.log(event.target.maxcust.value);
+//   console.log(event.target.avgcookies.value);
+//
+// }, false);
+
+var addStoreFormEl = document.getElementById('add-store-form'); // declares var from HTML form id
+
+// register submit event on form
+addStoreFormEl.addEventListener('submit', function(event){
+  event.preventDefault(); // may be default to load page
+  event.stopPropagation(); // if not added, could fire event to any ancestor element
+
+  // target = what event listener was applied to
+  // console.log(event.target);
+  // .value gets info between attributes
+  console.log(event.target.storename.value);
+  console.log(event.target.storeopen.value);
+  console.log(event.target.storeclose.value);
+  console.log(event.target.mincust.value);
+  console.log(event.target.maxcust.value);
+  console.log(event.target.avgcookies.value);
+
+}, false); // false included for old browsers; may be redundant if using stopPropagation
 
 populateTable(stores);
 footer();

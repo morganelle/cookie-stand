@@ -31,6 +31,27 @@
         <td>Daily totals</td>
       </tr>
     </table>
+    <section>
+  <form id="add-store-form">
+      <fieldset>
+        <legend>Add a new store</legend>
+        <label for="storename">Store:</label>
+        <input name="storename" id="store-input" type="text"></input>
+        <label for="storeopen">Store open:</label>
+        <input name="storeopen" id="storeopen-input" type="number"></input>
+        <label for="storeclose">Store close:</label>
+        <input name="storeclose"  id="storeclose-input" type="number"></input>
+        <label for="mincust">Minimum customer volume:</label>
+        <input name="mincust" type="number" id="min-cust-input"></input>
+        <label for="maxcust">Maximum customer volume</label>
+        <input name="maxcust" type="number" id="max-cust-input"></input>
+        <label for="avgcookies">Average cookies per customer:</label>
+        <input name="avgcookies" type="number" id="avgcookies-input"></input>
+        <button id="submit-button" type="submit">SUBMIT</button>
+    </fieldset>
+  </form>
+    </section>
     <script src="app.js"></script>
   </body>
+  <footer></footer>
 </html>
