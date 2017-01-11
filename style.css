@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Vampiro+One');
 
+body {
+  background-color: #EEF7F9;
+}
+
 section.store {
   border: 2px solid #5F464B;
   border-radius: 10px;
@@ -43,26 +47,30 @@ ul {
 
 table#sales {
   border-collapse: collapse;
+  background-color: #CCE8EE;
 }
 
 table#sales, th, td {
-  border: 1px solid pink;
+  border: 1px solid #9BC0BF;
 }
 
 td {
   height: 30px;
   padding: 7px 7px;
   text-align: center;
+  color: #498C8A;
 }
 
 td.store-name {
   font-weight:bold;
   text-align: right;
+  color: #5F464B;
 }
-tr.times {
+tr.times td {
   font-size: .8em;
   font-weight: bold;
   text-transform: uppercase;
+  color: #5F464B;
 }
 
 li.total {
@@ -88,3 +96,11 @@ section#stores-info {
   float: left;
   margin: 40px;
 }
+
+/*
+#4D4730
+#4B6858
+#498C8A
+#46ACC2
+#42F2F7
+*/

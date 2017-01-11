@@ -45,6 +45,7 @@ var stores = [firstAndPike, seaTac, seattleCenter, capHill, alki];
 // Declare variable for table with "sales" id
 var tableEl = document.getElementById('sales');
 
+// Populates table in HTML
 var populateTable = function(stores) {
   // steps through stores array, creates a row, and adds a store name td, has a nested loop to add all items in hourlyCookies array
   for (var i = 0; i < stores.length; i++) {
@@ -75,6 +76,7 @@ var populateTable = function(stores) {
   }
 };
 
+// Populates footer with hourly totals
 var footer = function(store) {
   var rowFooterEl = document.createElement('tr');
   var tableFooterData = document.createElement('td');
@@ -82,14 +84,15 @@ var footer = function(store) {
   tableFooterData.textContent = 'Hourly totals';
   rowFooterEl.appendChild(tableFooterData);
   // For loop to add hourly totals across all stores
-  for (var k = 0; k <= firstAndPike.hourlyCookies.length; k++) {
+  for (var k = 0; k < firstAndPike.hourlyCookies.length; k++) {
     var tableFooterCount = document.createElement('td');
-    console.log('footer loop ran ' + k);
     tableFooterCount.textContent = firstAndPike.hourlyCookies[k] + seaTac.hourlyCookies[k] + seattleCenter.hourlyCookies[k] + capHill.hourlyCookies[k] + alki.hourlyCookies[k];
     rowFooterEl.appendChild(tableFooterCount);
   }
   // adds empty field as last td
-
+  var tableFooterBlank = document.createElement('td');
+  tableFooterBlank.textContent = ' ';
+  rowFooterEl.appendChild(tableFooterBlank);
   // attaches the table row to DOM
   tableEl.appendChild(rowFooterEl);
 };
