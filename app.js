@@ -14,19 +14,14 @@ function Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCo
 }
 
 Store.prototype.custVolumeEst = function() {
-  return (Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust));
+  return (Math.floor(Math.random() * (this.storeClose - this.storeOpen) + this.minCust));
 };
-Store.prototype.calcHourlyCookiesEst = function() {
+Store.prototype.calcCookieEst = function() {
   for (var index = this.storeOpen; index < this.storeClose; index++) {
-    this.hourlyCookies.push(Math.round(this.custVolumeEst() * this.avgCookiesPerCust));
+    var result = Math.round(this.custVolumeEst() * this.avgCookiesPerCust);
+    this.hourlyCookies.push(result);
+    this.dayTotal += result;
   }
-  return this.hourlyCookies;
-};
-Store.prototype.calcDailyCookiesEst = function() {
-  this.dayTotal = this.hourlyCookies.reduce(function(a,b) {
-    return a + b;
-  });
-  return this.dayTotal;
 };
 
 // Construct new object
@@ -58,9 +53,8 @@ var populateTable = function(stores) {
     tableData.setAttribute('class','store-name');
     tableData.textContent = store.location;
     rowEl.appendChild(tableData);
-    // runs calcHourlyCookiesEst to get array of hourly estimates by store
-    store.calcHourlyCookiesEst();
-    store.calcDailyCookiesEst();
+    // runs calcCookieEst to get array of hourly estimates by store
+    store.calcCookieEst();
     // steps through each array of store.hourlyCookies values and populates a td
     for (var j = 0; j <= store.hourlyCookies.length; j++) {
       var tableContent = store.hourlyCookies[j];
