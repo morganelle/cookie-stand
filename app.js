@@ -82,13 +82,14 @@ var footer = function(store) {
   tableFooterData.textContent = 'Hourly totals';
   rowFooterEl.appendChild(tableFooterData);
   // For loop to add hourly totals across all stores
-  for (var k = 0; k < firstAndPike.hourlyCookies.length; k++) {
+  for (var k = 0; k <= firstAndPike.hourlyCookies.length; k++) {
     var tableFooterCount = document.createElement('td');
     console.log('footer loop ran ' + k);
     tableFooterCount.textContent = firstAndPike.hourlyCookies[k] + seaTac.hourlyCookies[k] + seattleCenter.hourlyCookies[k] + capHill.hourlyCookies[k] + alki.hourlyCookies[k];
     rowFooterEl.appendChild(tableFooterCount);
   }
   // adds empty field as last td
+
   // attaches the table row to DOM
   tableEl.appendChild(rowFooterEl);
 };
