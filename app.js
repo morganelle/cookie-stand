@@ -50,9 +50,6 @@ var alki = new Store('Alki', 6, 21, 2, 16, 4.6);
 // New Store template
 // var newStore = new Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCookiesPerCust);
 
-// All store objects in an array
-var stores = [firstAndPike, seaTac, seattleCenter, capHill, alki];
-
 // Declare variable for table with "sales" id
 var tableEl = document.getElementById('sales');
 
@@ -69,39 +66,12 @@ var populateRow = function(store) {
   tableEl.appendChild(rowEl);
 };
 
-firstAndPike.render();
-seaTac.render();
-seattleCenter.render();
-capHill.render();
-alki.render();
-
-// // Populates footer table row with hourly totals
-// var footer = function(store) {
-//   var rowFooterEl = document.createElement('tr');
-//   var tableFooterData = document.createElement('td');
-//   tableFooterData.setAttribute('class','store-name');
-//   tableFooterData.textContent = 'Hourly totals';
-//   rowFooterEl.appendChild(tableFooterData);
-//   // For loop to add hourly totals across all stores
-//   for (var k = 0; k < firstAndPike.hourlyCookies.length; k++) {
-//     var tableFooterCount = document.createElement('td');
-//     tableFooterCount.textContent = firstAndPike.hourlyCookies[k] + seaTac.hourlyCookies[k] + seattleCenter.hourlyCookies[k] + capHill.hourlyCookies[k] + alki.hourlyCookies[k];
-//     rowFooterEl.appendChild(tableFooterCount);
-//   }
-//   // adds empty field as last td
-//   var tableFooterBlank = document.createElement('td');
-//   tableFooterBlank.textContent = ' ';
-//   rowFooterEl.appendChild(tableFooterBlank);
-//   // attaches the table row to DOM
-//   tableEl.appendChild(rowFooterEl);
-// };
-
 var addStoreFormEl = document.getElementById('add-store-form'); // declares var from HTML form id
 
 // register submit event on form
 addStoreFormEl.addEventListener('submit', function() {submitEvent(event);}, false); // false included for old browsers; may be redundant if using stopPropagation
 
-// Event handler, a la arthur
+// Event handler
 var submitEvent = function(event) {
   event.preventDefault(); // may be default to load page
   event.stopPropagation(); // if not added, could fire event to any ancestor element
@@ -118,4 +88,9 @@ var submitEvent = function(event) {
   console.log(ename.hourlyCookies);
 };
 
-// footer();
+// Call render functions on all stores
+firstAndPike.render();
+seaTac.render();
+seattleCenter.render();
+capHill.render();
+alki.render();
