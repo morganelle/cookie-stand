@@ -16,13 +16,6 @@ section.store {
   width: 400px;
   float: left;
 }
-li.total {
-  color: #8E4A49;
-  font-weight: bold;
-  margin: 20px 0 0 0;
-  padding: 3px 0;
-  display: block;
-}
 
 header {
   height: 94px;

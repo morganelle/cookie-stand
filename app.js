@@ -1,11 +1,13 @@
 'use strict';
 
+// Store hours global variables
+var storeOpen = 6;
+var storeClose = 21;
+
 // Store constructor
-function Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCookiesPerCust) {
+function Store(location, storeId, minCust, maxCust, avgCookiesPerCust) {
   this.location = location;
   this.storeId = storeId;
-  this.storeOpen = storeOpen;
-  this.storeClose = storeClose;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookiesPerCust = avgCookiesPerCust;
@@ -14,10 +16,10 @@ function Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCo
 }
 
 Store.prototype.custVolumeEst = function() {
-  return (Math.floor(Math.random() * (this.storeClose - this.storeOpen) + this.minCust));
+  return (Math.floor(Math.random() * (storeClose - storeOpen) + this.minCust));
 };
 Store.prototype.calcCookieEst = function() {
-  for (var index = this.storeOpen; index < this.storeClose; index++) {
+  for (var index = storeOpen; index < storeClose; index++) {
     var result = Math.round(this.custVolumeEst() * this.avgCookiesPerCust);
     this.hourlyCookies.push(result);
     this.dayTotal += result;
@@ -46,14 +48,14 @@ Store.prototype.render = function() {
 };
 
 // Construct new object
-var firstAndPike = new Store('1st and Pike', 'first-and-pike', 6, 21, 23, 65, 6.3);
-var seaTac = new Store('SeaTac Airport', 'sea-tac', 6, 21, 3, 24, 1.2);
-var seattleCenter = new Store('Seattle Center', 'seattle-center', 6, 21, 11, 38, 3.7);
-var capHill = new Store('Capitol Hill', 'cap-hill', 6, 21, 20, 38, 2.3);
-var alki = new Store('Alki', 'alki', 6, 21, 2, 16, 4.6);
+var firstAndPike = new Store('1st and Pike', 'first-and-pike', 23, 65, 6.3);
+var seaTac = new Store('SeaTac Airport', 'sea-tac', 3, 24, 1.2);
+var seattleCenter = new Store('Seattle Center', 'seattle-center', 11, 38, 3.7);
+var capHill = new Store('Capitol Hill', 'cap-hill', 20, 38, 2.3);
+var alki = new Store('Alki', 'alki', 2, 16, 4.6);
 
 // New Store template
-// var newStore = new Store(location, storeId, storeOpen, storeClose, minCust, maxCust, avgCookiesPerCust);
+// var newStore = new Store(location, storeId, minCust, maxCust, avgCookiesPerCust);
 
 // All store objects in an array
 var stores = [firstAndPike, seaTac, seattleCenter, capHill, alki];
@@ -77,28 +79,21 @@ var populateTable = function(stores) {
   }
 };
 
-// // Adds hourly totals together for all stores
-// var hourlyTotals = function(stores) {
-//   for (var i = 0; i < stores.length; i++) {
-//     var result = [];
-//   }
-// };
-
-// // Populates footer with hourly totals
-// var footer = function(store) {
-//   var rowFooterEl = document.createElement('tr');
-//   var tableFooterData = document.createElement('td');
-//   tableFooterData.setAttribute('class','store-name');
-//   tableFooterData.textContent = 'Hourly totals';
-//   rowFooterEl.appendChild(tableFooterData);
-//   // For loop to add hourly totals across all stores
-//   for (var k = 1; k < firstAndPike.hourlyCookies.length; k++) {
-//     var tableFooterCount = document.createElement('td');
-//     tableFooterCount.textContent = firstAndPike.hourlyCookies[k] + seaTac.hourlyCookies[k] + seattleCenter.hourlyCookies[k] + capHill.hourlyCookies[k] + alki.hourlyCookies[k];
-//     rowFooterEl.appendChild(tableFooterCount);
-//   }
-//   tableEl.appendChild(rowFooterEl);
-// };
+// Adds hourly totals together for all stores
+var hourlyTotals = function(stores) {
+  var totalsArray = ['Hourly totals'];
+  var dailyTotals = 0;
+  for (var i = storeOpen; i < storeClose; i++) {
+    var result = 0;
+    for (var j = 0; j < stores.length; j++) {
+      result += stores[j].hourlyCookies[i];
+    }
+    totalsArray.push(result);
+    dailyTotals += result;
+  }
+  totalsArray.push(dailyTotals);
+  return totalsArray;
+};
 
 var addStoreFormEl = document.getElementById('add-store-form'); // declares var from HTML form id
 
@@ -110,16 +105,14 @@ var submitEvent = function(event) {
   event.preventDefault(); // may be default to load page
   event.stopPropagation(); // if not added, could fire event to any ancestor element
   var ename = (event.target.storename.value);
-  var eopen = Number.parseInt(event.target.storeopen.value);
-  var eclose = Number.parseInt(event.target.storeclose.value);
   var emin = Number.parseInt(event.target.mincust.value);
   var emax = Number.parseInt(event.target.maxcust.value);
   var eavg = Number.parseInt(event.target.avgcookies.value);
 
-  ename = new Store(ename, eopen, eclose, emin, emax, eavg);
+  ename = new Store(ename, ename, emin, emax, eavg);
   console.log(ename);
   ename.render(ename);
-  console.log(ename.hourlyCookies);
+  console.log('hourly cookies: ' + ename.hourlyCookies);
   stores.push(ename);
 };
 

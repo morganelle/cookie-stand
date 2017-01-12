@@ -31,29 +31,33 @@
         <td>Daily totals</td>
       </tr>
     </table>
+    <table id="totals">
+      <tr class="times">
+        <td>Hourly totals</td>
+    </table>
     <section>
-  <form id="add-store-form">
-      <fieldset>
-        <legend>Get hourly estimates on a new store</legend>
-        <label for="storename">Store name:</label>
-        <input name="storename" id="store-input" type="text" required></input>
-        <span class="range">
-          <label for="storeopen">Store open:</label>
-          <input name="storeopen" class="range" id="storeopen-input" type="time" required></input>
-          <label for="storeclose">Store close:</label>
-          <input name="storeclose" class="range" id="storeclose-input" type="time" required></input>
-        </span>
-        <span class="range">
-          <label for="mincust">Min. customers/hour:</label>
-          <input name="mincust" class="range" type="number" id="min-cust-input" required></input>
-          <label for="maxcust">Max. customers/hour:</label>
-          <input name="maxcust"  class="range" type="number" id="max-cust-input" required></input>
-        </span>
-        <label for="avgcookies">Average cookies per customer:</label>
-        <input name="avgcookies" id="avgcookies-input" required></input>
-        <button id="submit-button" type="submit">ADD STORE</button>
-    </fieldset>
-  </form>
+      <form id="add-store-form">
+          <fieldset>
+            <legend>Get hourly estimates on a new store</legend>
+            <label for="storename">Store name:</label>
+            <input name="storename" id="store-input" type="text" required></input>
+<!--            <span class="range">
+              <label for="storeopen">Store open:</label>
+              <input name="storeopen" class="range" id="storeopen-input" type="time" required></input>
+              <label for="storeclose">Store close:</label>
+              <input name="storeclose" class="range" id="storeclose-input" type="time" required></input>
+            </span> -->
+            <span class="range">
+              <label for="mincust">Min. customers/hour:</label>
+              <input name="mincust" class="range" type="number" id="min-cust-input" required></input>
+              <label for="maxcust">Max. customers/hour:</label>
+              <input name="maxcust"  class="range" type="number" id="max-cust-input" required></input>
+            </span>
+            <label for="avgcookies">Average cookies per customer:</label>
+            <input name="avgcookies" id="avgcookies-input" required></input>
+            <button id="submit-button" type="submit">ADD STORE</button>
+        </fieldset>
+      </form>
     </section>
     <script src="app.js"></script>
   </body>
