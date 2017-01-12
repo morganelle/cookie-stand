@@ -88,7 +88,7 @@ var submitEvent = function(event) {
   console.log(ename.hourlyCookies);
 };
 
-// Call render functions on all stores
+// Call render
 firstAndPike.render();
 seaTac.render();
 seattleCenter.render();
