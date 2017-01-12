@@ -4,6 +4,10 @@ body {
   background-color: #EEF7F9;
 }
 
+footer {
+  min-height: 100px;
+}
+
 section.store {
   border: 2px solid #5F464B;
   border-radius: 10px;
@@ -95,6 +99,44 @@ section#stores-info {
   width: 30%;
   float: left;
   margin: 40px;
+}
+
+/* Form styling */
+form {
+  width: 482px;
+  margin-top: 30px;
+}
+
+fieldset {
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  height: 2em;
+  margin-bottom: 10px;
+}
+
+span.range {
+  display: block;
+}
+
+span.range input.range {
+  width: 15%;
+}
+
+button#submit-button {
+  height: 2.5em;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: #4D4730;
+  color: white;
+  border-style: none;
+}
+
+label {
+  font-size: .7em;
+  text-transform: uppercase;
 }
 
 /*
