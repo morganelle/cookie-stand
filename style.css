@@ -46,7 +46,7 @@ section#sales-table {
 
 table#sales {
   border-collapse: collapse;
-  background-color: rgba(75, 104, 88, 0.3);
+  background-color: rgba(75, 104, 88, 0.15);
   margin-top: 16px;
 }
 

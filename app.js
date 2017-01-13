@@ -1,8 +1,9 @@
 'use strict';
 
-// Store hours global variables
-var storeOpen = 6;
+// GLOBAL VARIABLES
+var storeOpen = 6; // Store hours global variables
 var storeClose = 21;
+var totalsArray; // Hourly totals for all stores
 
 // Store constructor
 function Store(location, storeId, minCust, maxCust, avgCookiesPerCust) {
@@ -14,7 +15,7 @@ function Store(location, storeId, minCust, maxCust, avgCookiesPerCust) {
   this.hourlyCookies = [];
   this.dayTotal = 0;
 }
-
+// Store methods
 Store.prototype.custVolumeEst = function() {
   return (Math.floor(Math.random() * (storeClose - storeOpen) + this.minCust));
 };
@@ -30,14 +31,13 @@ Store.prototype.buildRow = function() {
   row.push(this.hourlyCookies);
   row.push(this.dayTotal);
   row.unshift(this.location);
+  // flattens nested array
   this.row = row.reduce(function(a, b) {return a.concat(b);}, []);
   return this.row;
 };
 Store.prototype.render = function() {
   this.calcCookieEst();
-  console.log('render hourly cookies: ' + this.hourlyCookies);
   this.buildRow();
-  console.log('render row: ' + this.row);
   var rowEl = document.createElement('tr');
   for (var j = 0; j < this.row.length; j++) {
     var tableDataEl = document.createElement('td');
@@ -63,7 +63,43 @@ var stores = [firstAndPike, seaTac, seattleCenter, capHill, alki];
 // Declare variable for table with "sales" id
 var tableEl = document.getElementById('sales');
 
-var populateTable = function(stores) {
+// Function to convert store hour numbers into hour strings
+function convertHours(hour) {
+  if (hour < 12) {
+    return hour + ':00am';
+  }
+  else if (hour === 12) {
+    return hour + ':00pm';
+  }
+  else {
+    return (hour - 12) + ':00pm';
+  }
+}
+
+// Prints trs and tds for store hours
+function populateHours() {
+  // Create tr and add a blank td
+  var rowEl = document.createElement('tr');
+  rowEl.setAttribute('class','times');
+  var tableDataEl = document.createElement('td');
+  tableDataEl.textContent = ('');
+  rowEl.appendChild(tableDataEl);
+  // Create store hour tds
+  for (var i = storeOpen; i < storeClose; i++) {
+    var tableDataEl = document.createElement('td');
+    tableDataEl.textContent = convertHours(i);
+    rowEl.appendChild(tableDataEl);
+  }
+  // Create Daily totals td
+  var tableDataEl = document.createElement('td');
+  tableDataEl.textContent = ('Daily totals');
+  rowEl.appendChild(tableDataEl);
+  // Append row to table
+  tableEl.appendChild(rowEl);
+}
+
+// Prints trs and tds for store row arrays
+function populateTable(stores) {
   for (var i = 0; i < stores.length; i++) {
     var store = stores[i];
     var rowEl = document.createElement('tr');
@@ -77,31 +113,26 @@ var populateTable = function(stores) {
     }
     tableEl.appendChild(rowEl);
   }
-};
-
-var totalsArray;
+}
 
 // Adds hourly totals together for all stores
-var hourlyTotals = function(stores) {
+function hourlyTotals(stores) {
   totalsArray = ['Hourly totals'];
   var dailyTotals = 0;
   for (var i = 0; i < (storeClose - storeOpen); i++) {
-    // console.log('outer loop ' + i);
     var result = 0;
     for (var j = 0; j < stores.length; j++) {
-      // console.log('inner loop ' + j);
       result += stores[j].hourlyCookies[i];
-      // console.log('result: ' + result);
     }
     totalsArray.push(result);
     dailyTotals += result;
   }
   totalsArray.push(dailyTotals);
   return totalsArray;
-};
+}
 
 // Prints hourly totals to HTML table
-var populateHourlyTotals = function(stores) {
+function populateHourlyTotals(stores) {
   hourlyTotals(stores);
   var rowEl = document.createElement('tr');
   rowEl.setAttribute('id', 'results');
@@ -111,37 +142,39 @@ var populateHourlyTotals = function(stores) {
     rowEl.appendChild(tableDataEl);
   }
   tableEl.appendChild(rowEl);
-};
+}
 
 // Remove hourly totals - specifically when new stores get added
-var removeHourlyTotals = function() {
+function removeHourlyTotals() {
   var removeEl = document.getElementById('results');
   var containerEl = removeEl.parentNode;
   containerEl.removeChild(removeEl);
-};
+}
 
 var addStoreFormEl = document.getElementById('add-store-form'); // declares var from HTML form id
 
 // register submit event on form
-addStoreFormEl.addEventListener('submit', function() {submitEvent(event);}, false); // false included for old browsers; may be redundant if using stopPropagation
+addStoreFormEl.addEventListener('submit', function() {submitEvent(event);}, false);
 
 // Event handler
-var submitEvent = function(event) {
+function submitEvent(event) {
   event.preventDefault(); // may be default to load page
   event.stopPropagation(); // if not added, could fire event to any ancestor element
+  // Assigns variables to form input data
   var ename = (event.target.storename.value);
   var emin = Number.parseInt(event.target.mincust.value);
   var emax = Number.parseInt(event.target.maxcust.value);
   var eavg = Number.parseInt(event.target.avgcookies.value);
-
+  // Calls store constructor, with form input values as arguments
   ename = new Store(ename, ename, emin, emax, eavg);
   ename.render(ename);
-  console.log('hourly cookies: ' + ename.hourlyCookies);
   stores.push(ename);
+  // Deletes hourly totals row before re-populating it to include the new store
   removeHourlyTotals();
   populateHourlyTotals(stores);
-};
+}
 
+// Call functions to populate table data
+populateHours();
 populateTable(stores);
 populateHourlyTotals(stores);
-// footer();
