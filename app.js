@@ -1,9 +1,11 @@
 'use strict';
 
 // GLOBAL VARIABLES
-var storeOpen = 6; // Store hours global variables
-var storeClose = 21;
+var storeOpen = 6; // Store open time
+var storeClose = 21; // Store close time
 var totalsArray; // Hourly totals for all stores
+var tableEl = document.getElementById('sales'); // Variable for table with "sales" id
+var addStoreFormEl = document.getElementById('add-store-form'); // Variable from HTML form id
 
 // Store constructor
 function Store(location, storeId, minCust, maxCust, avgCookiesPerCust) {
@@ -59,9 +61,6 @@ var alki = new Store('Alki', 'alki', 2, 16, 4.6);
 
 // All store objects in an array
 var stores = [firstAndPike, seaTac, seattleCenter, capHill, alki];
-
-// Declare variable for table with "sales" id
-var tableEl = document.getElementById('sales');
 
 // Function to convert store hour numbers into hour strings
 function convertHours(hour) {
@@ -150,8 +149,6 @@ function removeHourlyTotals() {
   var containerEl = removeEl.parentNode;
   containerEl.removeChild(removeEl);
 }
-
-var addStoreFormEl = document.getElementById('add-store-form'); // declares var from HTML form id
 
 // register submit event on form
 addStoreFormEl.addEventListener('submit', function() {submitEvent(event);}, false);
