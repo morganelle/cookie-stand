@@ -9,6 +9,7 @@
       <img src="images/salmon.png" />
       <h1>"literally, cookies with salmon in them"</h1>
     </header>
+    <section id="sales-table">
     <h2>Estimated sales by store</h2>
     <table id="sales">
       <tr class="times">
@@ -29,22 +30,15 @@
         <td>7:00pm</td>
         <td>8:00pm</td>
         <td>Daily totals</td>
-        <tr id="dynamic-sales"></tr>
-        <tr id="hourly-results"></tr>
       </tr>
     </table>
+  </section>
     <section>
       <form id="add-store-form">
           <fieldset>
             <legend>Get hourly estimates on a new store</legend>
             <label for="storename">Store name:</label>
             <input name="storename" id="store-input" type="text" required></input>
-<!--            <span class="range">
-              <label for="storeopen">Store open:</label>
-              <input name="storeopen" class="range" id="storeopen-input" type="time" required></input>
-              <label for="storeclose">Store close:</label>
-              <input name="storeclose" class="range" id="storeclose-input" type="time" required></input>
-            </span> -->
             <span class="range">
               <label for="mincust">Min. customers/hour:</label>
               <input name="mincust" class="range" type="number" id="min-cust-input" required></input>

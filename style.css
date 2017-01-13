@@ -31,10 +31,7 @@ header h1 {
 
 h2 {
   color: #8E4A49;
-}
-
-ul {
-  padding-left:40px;
+  margin: 0;
 }
 
 * {
@@ -42,9 +39,15 @@ ul {
   color: #5F464B;
 }
 
+/* sales table styles */
+section#sales-table {
+  margin: 40px;
+}
+
 table#sales {
   border-collapse: collapse;
-  background-color: #CCE8EE;
+  background-color: rgba(75, 104, 88, 0.3);
+  margin-top: 16px;
 }
 
 table#sales, th, td {
@@ -88,10 +91,52 @@ section#about-us {
   float: left;
   margin: 40px;
 }
-section#stores-info {
+aside {
   width: 30%;
   float: left;
-  margin: 40px;
+  margin: 40px 40px 40px 0;
+  padding: 30px;
+  background-color: rgba(75, 104, 88, 0.3);
+}
+
+aside h2 {
+  color: #5F464B;
+}
+
+aside p, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+aside h3 {
+  padding-top: 25px;
+  padding-bottom: 5px;
+}
+
+/* Store list */
+ul {
+  padding-left: 0;
+}
+
+ul#stores {
+  margin-bottom: 30px;
+}
+
+ul#stores li {
+  list-style:none;
+  list-style-position: outside;
+  font-size: .9em;
+  line-height: 1.2em;
+}
+
+ul#stores > li {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+ul#stores ul {
+  margin-top: 2px;
+  margin-bottom: 15px;
 }
 
 /* Form styling */
@@ -102,6 +147,7 @@ form {
 
 fieldset {
   padding: 20px;
+  margin-left: 40px;
 }
 
 input {
@@ -115,7 +161,7 @@ span.range {
 }
 
 span.range input.range {
-  width: 15%;
+  width: 10%;
 }
 
 button#submit-button {
