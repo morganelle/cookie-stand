@@ -79,20 +79,45 @@ var populateTable = function(stores) {
   }
 };
 
+var totalsArray;
+
 // Adds hourly totals together for all stores
 var hourlyTotals = function(stores) {
-  var totalsArray = ['Hourly totals'];
+  totalsArray = ['Hourly totals'];
   var dailyTotals = 0;
-  for (var i = storeOpen; i < storeClose; i++) {
+  for (var i = 0; i < (storeClose - storeOpen); i++) {
+    // console.log('outer loop ' + i);
     var result = 0;
     for (var j = 0; j < stores.length; j++) {
+      // console.log('inner loop ' + j);
       result += stores[j].hourlyCookies[i];
+      // console.log('result: ' + result);
     }
     totalsArray.push(result);
     dailyTotals += result;
   }
   totalsArray.push(dailyTotals);
   return totalsArray;
+};
+
+// Prints hourly totals to HTML table
+var populateHourlyTotals = function(stores) {
+  hourlyTotals(stores);
+  var rowEl = document.createElement('tr');
+  rowEl.setAttribute('id', 'results');
+  for (var i = 0; i < totalsArray.length; i++) {
+    var tableDataEl = document.createElement('td');
+    tableDataEl.textContent = totalsArray[i];
+    rowEl.appendChild(tableDataEl);
+  }
+  tableEl.appendChild(rowEl);
+};
+
+// Remove hourly totals - specifically when new stores get added
+var removeHourlyTotals = function() {
+  var removeEl = document.getElementById('results');
+  var containerEl = removeEl.parentNode;
+  containerEl.removeChild(removeEl);
 };
 
 var addStoreFormEl = document.getElementById('add-store-form'); // declares var from HTML form id
@@ -110,11 +135,13 @@ var submitEvent = function(event) {
   var eavg = Number.parseInt(event.target.avgcookies.value);
 
   ename = new Store(ename, ename, emin, emax, eavg);
-  console.log(ename);
   ename.render(ename);
   console.log('hourly cookies: ' + ename.hourlyCookies);
   stores.push(ename);
+  removeHourlyTotals();
+  populateHourlyTotals(stores);
 };
 
 populateTable(stores);
+populateHourlyTotals(stores);
 // footer();
