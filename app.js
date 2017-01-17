@@ -146,8 +146,7 @@ function populateHourlyTotals(stores) {
 // Remove hourly totals - specifically when new stores get added
 function removeHourlyTotals() {
   var removeEl = document.getElementById('results');
-  var containerEl = removeEl.parentNode;
-  containerEl.removeChild(removeEl);
+  removeEl.remove();
 }
 
 // register submit event on form
